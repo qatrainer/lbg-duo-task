@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+  labels:
+    app: flask
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask-container
+        image: stratcastor/duo-deploy-flask:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5500
+        env:
+        - name: YOUR_NAME
+          value: Magos
